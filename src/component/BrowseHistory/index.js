@@ -84,7 +84,33 @@ class BrowseHistory extends Component {
   }
 
   getSearchedInput = event => {
-    this.setState({searchInput: event.target.value})
+    const emptyResults = 'Empty'
+    const {HistoryList, searchInput} = this.state
+    const isGetSearchInput = HistoryList.filter(eachItem =>
+      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+
+    if (isGetSearchInput !== undefined) {
+      this.setState({searchInput: event.target.value})
+    } else {
+      this.setState({HistoryList: emptyResults})
+    }
+  }
+
+  onGetFilteredSearchInput = () => {
+    const {searchInput, HistoryList} = this.state
+    const emptyText = 'Empty'
+    let emptyList
+    const filterSearchedInput = HistoryList.filter(eachItem =>
+      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+    if (filterSearchedInput !== undefined) {
+      emptyList = filterSearchedInput
+    } else {
+      emptyList = emptyText
+    }
+
+    return emptyList
   }
 
   onClickDeleteHistory = id => {
@@ -99,9 +125,36 @@ class BrowseHistory extends Component {
     }
   }
 
-  render() {
+  renderEmptyHistory = () => {
+    const {searchInput} = this.state
+    return (
+      <div className="show-text">
+        <p className="no-history-text">There is no history to show</p>
+      </div>
+    )
+  }
+
+  renderFilteredSearchedList = () => {
     const {searchInput, HistoryList} = this.state
     const filterSearchedInput = HistoryList.filter(eachItem =>
+      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+    return (
+      <ul className="bottom-container ">
+        {filterSearchedInput.map(eachItem => (
+          <HistoryItem
+            key={eachItem.id}
+            historyDetails={eachItem}
+            onClickDeleteHistory={this.onClickDeleteHistory}
+          />
+        ))}
+      </ul>
+    )
+  }
+
+  render() {
+    const {searchInput, HistoryList} = this.state
+    const isSearchedInput = HistoryList.filter(eachItem =>
       eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
     )
 
@@ -128,18 +181,9 @@ class BrowseHistory extends Component {
               />
             </div>
           </div>
-          <ul className="bottom-container ">
-            {filterSearchedInput.map(eachItem => (
-              <HistoryItem
-                key={eachItem.id}
-                historyDetails={eachItem}
-                onClickDeleteHistory={this.onClickDeleteHistory}
-              />
-            ))}
-          </ul>
-          <div className="show-text">
-            <p className="no-history-text">There is no history to show</p>
-          </div>
+          {isSearchedInput !== true
+            ? this.renderFilteredSearchedList()
+            : this.renderEmptyHistory()}
         </div>
       </div>
     )
