@@ -181,7 +181,7 @@ class BrowseHistory extends Component {
               />
             </div>
           </div>
-          {isSearchedInput !== true
+          {isSearchedInput.length !== 0
             ? this.renderFilteredSearchedList()
             : this.renderEmptyHistory()}
         </div>

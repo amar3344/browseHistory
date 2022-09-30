@@ -6,12 +6,23 @@
   align-items: center;
 }
 
+@media (max-width: 576px) {
+  .main-container {
+  }
+}
+
 .bg-container {
   width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #f8fafc;
+}
+
+@media (max-width: 576px) {
+  .bg-container {
+    width: 80%;
+  }
 }
 
 .top-container {
@@ -23,6 +34,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+}
+
+@media (max-width: 576px) {
+  .top-container {
+    width: 100%;
+  }
 }
 
 .logo-image {
@@ -67,7 +84,10 @@
 }
 
 .show-text {
-  display: none;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .no-history-text {

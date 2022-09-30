@@ -1,9 +1,15 @@
 .history-item-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
   padding: 10px;
+}
+
+@media (max-width: 576px) {
+  .history-item-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .time-text {
@@ -11,6 +17,33 @@
   font-weight: 500;
   font-family: 'Roboto';
   color: #64748b;
+  display: flex;
+}
+
+.image-domain-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 576px) {
+  .image-domain-button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.logo-title-domain-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  .logo-title-domain-container {
+    flex-direction: row;
+  }
 }
 
 .images {
@@ -20,11 +53,35 @@
   margin-right: 10px;
 }
 
+.domain-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+  .domain-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 5px;
+    width: 230px;
+  }
+}
+
 .title-text {
   font-size: 15px;
   font-weight: 500;
   font-family: 'Roboto';
   color: #475569;
+}
+
+@media (max-width: 576px) {
+  .title-text {
+    margin-top: 10px;
+    font-size: 12px;
+  }
 }
 
 .domain-text {
@@ -35,17 +92,18 @@
   margin-left: 10px;
 }
 
+@media (max-width: 576px) {
+  .domain-text {
+    font-size: 12px;
+    margin-top: -10px;
+    margin-left: -1px;
+  }
+}
+
 .delete-image {
   width: 15px;
   height: 15px;
   background-size: cover;
-}
-
-.logo-title-domain-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .button {
