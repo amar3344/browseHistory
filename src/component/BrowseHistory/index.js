@@ -176,7 +176,7 @@ class BrowseHistory extends Component {
               <input
                 placeholder="search history"
                 className="input"
-                value={searchInput}
+                value="search"
                 onChange={this.getSearchedInput}
               />
             </div>
