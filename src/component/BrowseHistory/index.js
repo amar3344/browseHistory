@@ -79,30 +79,30 @@ const initialHistoryList = [
 
 class BrowseHistory extends Component {
   state = {
-    searchInput: '',
+    search: '',
     HistoryList: initialHistoryList,
   }
 
   getSearchedInput = event => {
     const emptyResults = 'Empty'
-    const {HistoryList, searchInput} = this.state
+    const {HistoryList, search} = this.state
     const isGetSearchInput = HistoryList.filter(eachItem =>
-      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+      eachItem.title.toLowerCase().includes(search.toLowerCase()),
     )
 
     if (isGetSearchInput !== undefined) {
-      this.setState({searchInput: event.target.value})
+      this.setState({search: event.target.value})
     } else {
       this.setState({HistoryList: emptyResults})
     }
   }
 
   onGetFilteredSearchInput = () => {
-    const {searchInput, HistoryList} = this.state
+    const {search, HistoryList} = this.state
     const emptyText = 'Empty'
     let emptyList
     const filterSearchedInput = HistoryList.filter(eachItem =>
-      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+      eachItem.title.toLowerCase().includes(search.toLowerCase()),
     )
     if (filterSearchedInput !== undefined) {
       emptyList = filterSearchedInput
@@ -126,7 +126,7 @@ class BrowseHistory extends Component {
   }
 
   renderEmptyHistory = () => {
-    const {searchInput} = this.state
+    const {search} = this.state
     return (
       <div className="show-text">
         <p className="no-history-text">There is no history to show</p>
@@ -135,9 +135,9 @@ class BrowseHistory extends Component {
   }
 
   renderFilteredSearchedList = () => {
-    const {searchInput, HistoryList} = this.state
+    const {search, HistoryList} = this.state
     const filterSearchedInput = HistoryList.filter(eachItem =>
-      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+      eachItem.title.toLowerCase().includes(search.toLowerCase()),
     )
     return (
       <ul className="bottom-container ">
@@ -153,9 +153,9 @@ class BrowseHistory extends Component {
   }
 
   render() {
-    const {searchInput, HistoryList} = this.state
+    const {search, HistoryList} = this.state
     const isSearchedInput = HistoryList.filter(eachItem =>
-      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+      eachItem.title.toLowerCase().includes(search.toLowerCase()),
     )
 
     return (
@@ -176,7 +176,7 @@ class BrowseHistory extends Component {
               <input
                 placeholder="search history"
                 className="input"
-                value="search"
+                type="search"
                 onChange={this.getSearchedInput}
               />
             </div>
